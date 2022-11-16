@@ -1,6 +1,7 @@
 package com.animeson.projectanime.entites;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Objects;
 
 public class Anime implements Serializable {
@@ -11,16 +12,21 @@ public class Anime implements Serializable {
 	private String description;
 	private String language;
 	private String productorOrStudio;
+	private Instant dateLanc;
+	private String imgUrl;
 
 	public Anime() {
 	}
 
-	public Anime(Long id, String title, String description, String language, String productorOrStudio) {
+	public Anime(Long id, String title, String description, String language, String productorOrStudio, Instant dateLanc,
+			String imgUrl) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
 		this.language = language;
 		this.productorOrStudio = productorOrStudio;
+		this.dateLanc = dateLanc;
+		this.imgUrl = imgUrl;
 	}
 
 	public Long getId() {
@@ -61,6 +67,22 @@ public class Anime implements Serializable {
 
 	public void setProductorOrStudio(String productorOrStudio) {
 		this.productorOrStudio = productorOrStudio;
+	}
+
+	public Instant getDateLanc() {
+		return dateLanc;
+	}
+
+	public void setDateLanc(Instant dateLanc) {
+		this.dateLanc = dateLanc;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 
 	@Override
