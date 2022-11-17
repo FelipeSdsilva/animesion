@@ -29,12 +29,13 @@ public class Anime implements Serializable {
 	@Column(columnDefinition = "")
 	private Instant dateLanc;
 	private String imgUrl;
+	private String videoUrl;
 
 	public Anime() {
 	}
 
 	public Anime(Long id, String title, String description, String language, String productorOrStudio, Instant dateLanc,
-			String imgUrl) {
+			String imgUrl, String videoUrl) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -42,6 +43,7 @@ public class Anime implements Serializable {
 		this.productorOrStudio = productorOrStudio;
 		this.dateLanc = dateLanc;
 		this.imgUrl = imgUrl;
+		this.videoUrl = videoUrl;
 	}
 
 	public Long getId() {
@@ -98,6 +100,14 @@ public class Anime implements Serializable {
 
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
+	}
+
+	public String getVideoUrl() {
+		return videoUrl;
+	}
+
+	public void setVideoUrl(String videoUrl) {
+		this.videoUrl = videoUrl;
 	}
 
 	@Override

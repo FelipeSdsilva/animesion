@@ -11,25 +11,29 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="tb_episode")
-public class Episode implements Serializable{
+@Table(name = "tb_episode")
+public class Episode implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nameEpisode;
-	
+
 	@Column(columnDefinition = "")
 	private String description;
-	
+	private String imgUrl;
+	private String videoUrl;
+
 	public Episode() {
 	}
 
-	public Episode(Long id, String nameEpisode, String description) {
+	public Episode(Long id, String nameEpisode, String description, String imgUrl, String videoUrl) {
 		this.id = id;
 		this.nameEpisode = nameEpisode;
 		this.description = description;
+		this.imgUrl = imgUrl;
+		this.videoUrl = videoUrl;
 	}
 
 	public Long getId() {
@@ -54,6 +58,22 @@ public class Episode implements Serializable{
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	public String getVideoUrl() {
+		return videoUrl;
+	}
+
+	public void setVideoUrl(String videoUrl) {
+		this.videoUrl = videoUrl;
 	}
 
 	@Override
