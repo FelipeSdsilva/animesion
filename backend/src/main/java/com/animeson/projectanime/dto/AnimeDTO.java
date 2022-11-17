@@ -2,6 +2,10 @@ package com.animeson.projectanime.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.animeson.projectanime.entites.Episode;
 
 public class AnimeDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -13,6 +17,10 @@ public class AnimeDTO implements Serializable {
 	private String productorOrStudio;
 	private Instant dateLanc;
 	private String imgUrl;
+	
+	private List<Episode> episodies = new ArrayList<>();
+	
+	private List<GenreDTO> genres = new ArrayList<>();
 	
 	public AnimeDTO() {
 	}

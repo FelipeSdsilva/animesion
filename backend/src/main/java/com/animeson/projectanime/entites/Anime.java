@@ -2,17 +2,25 @@ package com.animeson.projectanime.entites;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="tb_anime")
+@Table(name = "tb_anime")
 public class Anime implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -20,16 +28,25 @@ public class Anime implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
-	
+
 	@Column(columnDefinition = "")
 	private String description;
 	private String language;
 	private String productorOrStudio;
-	
+
 	@Column(columnDefinition = "")
 	private Instant dateLanc;
 	private String imgUrl;
 	private String videoUrl;
+
+	@OneToMany(mappedBy = "anime")
+	private List<Episode> episodies = new ArrayList<>();
+	
+	@ManyToMany
+	@JoinTable(name = "tb_anime_genre",
+		joinColumns = @JoinColumn(name = "anime_id"),
+		inverseJoinColumns = @JoinColumn(name = "genre_id"))
+	private Set<Genre> genres = new HashSet<>();
 
 	public Anime() {
 	}
@@ -108,6 +125,14 @@ public class Anime implements Serializable {
 
 	public void setVideoUrl(String videoUrl) {
 		this.videoUrl = videoUrl;
+	}
+
+	public List<Episode> getEpisodies() {
+		return episodies;
+	}
+
+	public Set<Genre> getGenres() {
+		return genres;
 	}
 
 	@Override

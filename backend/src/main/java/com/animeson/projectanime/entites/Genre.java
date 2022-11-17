@@ -1,12 +1,15 @@
 package com.animeson.projectanime.entites;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +21,12 @@ public class Genre implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
+	
+	@ManyToMany(mappedBy = "genres")
+	private Set<Anime> animes = new HashSet<>();	
+	
+	@ManyToMany(mappedBy = "movies")
+	private Set<Movie> movies = new HashSet<>();
 	
 	public Genre() {
 	}

@@ -4,10 +4,13 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,15 +21,22 @@ public class Notification implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Column(columnDefinition = "")
 	private String text;
+
+	@Column(columnDefinition = "")
 	private Instant moment;
 	private boolean read;
+
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
 	public Notification() {
 	}
 
 	public Notification(Long id, String text, Instant moment, boolean read) {
-		super();
 		this.id = id;
 		this.text = text;
 		this.moment = moment;
