@@ -4,8 +4,7 @@ This is project has objectve a API of draw japanese, in coworking Matheus Ostern
 # Modelo Conceitual
 Este é o modelo conceitual do que será implantado.
 
-![image](https://user-images.githubusercontent.com/47900701/202513649-3b9e06dc-3547-4844-99fd-a9bd1c484cf8.png)
-
+![image](https://user-images.githubusercontent.com/47900701/202531107-71ec1124-36c7-4c76-a2bb-ca61de1aaf0b.png)
 
 ## Back-End(Felipe Sousa)
   - Java 17
