@@ -26,6 +26,7 @@ public class Episode implements Serializable {
 	private String description;
 	private String imgUrl;
 	private String videoUrl;
+	private Integer temp;
 
 	@ManyToOne
 	@JoinColumn(name ="anime_id")
@@ -34,12 +35,15 @@ public class Episode implements Serializable {
 	public Episode() {
 	}
 
-	public Episode(Long id, String nameEpisode, String description, String imgUrl, String videoUrl) {
+	public Episode(Long id, String nameEpisode, String description, String imgUrl, String videoUrl, Integer temp,
+			Anime anime) {
 		this.id = id;
 		this.nameEpisode = nameEpisode;
 		this.description = description;
 		this.imgUrl = imgUrl;
 		this.videoUrl = videoUrl;
+		this.temp = temp;
+		this.anime = anime;
 	}
 
 	public Long getId() {
@@ -80,6 +84,22 @@ public class Episode implements Serializable {
 
 	public void setVideoUrl(String videoUrl) {
 		this.videoUrl = videoUrl;
+	}
+
+	public Integer getTemp() {
+		return temp;
+	}
+
+	public void setTemp(Integer temp) {
+		this.temp = temp;
+	}
+
+	public Anime getAnime() {
+		return anime;
+	}
+
+	public void setAnime(Anime anime) {
+		this.anime = anime;
 	}
 
 	@Override

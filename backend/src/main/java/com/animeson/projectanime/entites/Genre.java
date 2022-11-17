@@ -25,7 +25,7 @@ public class Genre implements Serializable {
 	@ManyToMany(mappedBy = "genres")
 	private Set<Anime> animes = new HashSet<>();	
 	
-	@ManyToMany(mappedBy = "movies")
+	@ManyToMany(mappedBy = "genres")
 	private Set<Movie> movies = new HashSet<>();
 	
 	public Genre() {

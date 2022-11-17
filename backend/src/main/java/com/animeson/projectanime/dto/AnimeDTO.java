@@ -2,34 +2,28 @@ package com.animeson.projectanime.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.animeson.projectanime.entites.Episode;
 
 public class AnimeDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
 	private String title;
-	private String description;
+	private Integer qtdTemp;
+	private String synopsis;
 	private String language;
 	private String productorOrStudio;
 	private Instant dateLanc;
 	private String imgUrl;
-	
-	private List<Episode> episodies = new ArrayList<>();
-	
-	private List<GenreDTO> genres = new ArrayList<>();
-	
+
 	public AnimeDTO() {
 	}
 
-	public AnimeDTO(Long id, String title, String description, String language, String productorOrStudio,
-			Instant dateLanc, String imgUrl) {
+	public AnimeDTO(Long id, String title, Integer qtdTemp, String synopsis, String language,
+			String productorOrStudio, Instant dateLanc, String imgUrl) {
 		this.id = id;
 		this.title = title;
-		this.description = description;
+		this.qtdTemp = qtdTemp;
+		this.synopsis = synopsis;
 		this.language = language;
 		this.productorOrStudio = productorOrStudio;
 		this.dateLanc = dateLanc;
@@ -52,12 +46,20 @@ public class AnimeDTO implements Serializable {
 		this.title = title;
 	}
 
-	public String getDescription() {
-		return description;
+	public Integer getQtdTemp() {
+		return qtdTemp;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setQtdTemp(Integer qtdTemp) {
+		this.qtdTemp = qtdTemp;
+	}
+
+	public String getSynopsis() {
+		return synopsis;
+	}
+
+	public void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
 	}
 
 	public String getLanguage() {

@@ -2,6 +2,8 @@ package com.animeson.projectanime.dto;
 
 import java.io.Serializable;
 
+import com.animeson.projectanime.entites.Genre;
+
 public class GenreDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -14,6 +16,11 @@ public class GenreDTO implements Serializable {
 	public GenreDTO(Long id, String name) {
 		this.id = id;
 		this.name = name;
+	}
+
+	public GenreDTO(Genre entity) {
+		id = entity.getId();
+		name = entity.getName();
 	}
 
 	public Long getId() {

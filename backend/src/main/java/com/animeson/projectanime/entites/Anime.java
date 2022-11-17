@@ -28,9 +28,10 @@ public class Anime implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
+	private Integer qtdTemp;
 
 	@Column(columnDefinition = "")
-	private String description;
+	private String synopsis;
 	private String language;
 	private String productorOrStudio;
 
@@ -41,21 +42,22 @@ public class Anime implements Serializable {
 
 	@OneToMany(mappedBy = "anime")
 	private List<Episode> episodies = new ArrayList<>();
-	
+
 	@ManyToMany
 	@JoinTable(name = "tb_anime_genre",
-		joinColumns = @JoinColumn(name = "anime_id"),
-		inverseJoinColumns = @JoinColumn(name = "genre_id"))
+	joinColumns = @JoinColumn(name = "anime_id"), 
+	inverseJoinColumns = @JoinColumn(name = "genre_id"))
 	private Set<Genre> genres = new HashSet<>();
 
 	public Anime() {
 	}
 
-	public Anime(Long id, String title, String description, String language, String productorOrStudio, Instant dateLanc,
-			String imgUrl, String videoUrl) {
+	public Anime(Long id, String title, Integer qtdTemp, String synopsis, String language, String productorOrStudio,
+			Instant dateLanc, String imgUrl, String videoUrl) {
 		this.id = id;
 		this.title = title;
-		this.description = description;
+		this.qtdTemp = qtdTemp;
+		this.synopsis = synopsis;
 		this.language = language;
 		this.productorOrStudio = productorOrStudio;
 		this.dateLanc = dateLanc;
@@ -79,12 +81,20 @@ public class Anime implements Serializable {
 		this.title = title;
 	}
 
-	public String getDescription() {
-		return description;
+	public Integer getQtdTemp() {
+		return qtdTemp;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setQtdTemp(Integer qtdTemp) {
+		this.qtdTemp = qtdTemp;
+	}
+
+	public String getSynopsis() {
+		return synopsis;
+	}
+
+	public void setSynopsis(String synopsis) {
+		this.synopsis = synopsis;
 	}
 
 	public String getLanguage() {

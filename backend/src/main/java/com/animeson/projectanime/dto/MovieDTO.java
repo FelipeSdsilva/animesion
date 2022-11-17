@@ -1,6 +1,9 @@
 package com.animeson.projectanime.dto;
 
 import java.io.Serializable;
+import java.time.Instant;
+
+import com.animeson.projectanime.entites.Movie;
 
 public class MovieDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -8,18 +11,36 @@ public class MovieDTO implements Serializable {
 	private Long id;
 	private String title;
 	private String subTitle;
-	private String imgUrl;
+	private Instant dateLanc;
 	private String synopsis;
+	private String imgUrl;
+	private String language;
+	private String videoUrl;
 
 	public MovieDTO() {
 	}
 
-	public MovieDTO(Long id, String title, String subTitle, String imgUrl, String synopsis) {
+	public MovieDTO(Long id, String title, String subTitle, Instant dateLanc, String synopsis, String imgUrl,
+			String language, String videoUrl) {
 		this.id = id;
 		this.title = title;
 		this.subTitle = subTitle;
-		this.imgUrl = imgUrl;
+		this.dateLanc = dateLanc;
 		this.synopsis = synopsis;
+		this.imgUrl = imgUrl;
+		this.language = language;
+		this.videoUrl = videoUrl;
+	}
+
+	public MovieDTO(Movie entity) {
+		id = entity.getId();
+		title = entity.getTitle();
+		subTitle = entity.getSubTitle();
+		dateLanc = entity.getDateLanc();
+		synopsis = entity.getSynopsis();
+		imgUrl = entity.getImgUrl();
+		language = entity.getLanguage();
+		videoUrl = entity.getVideoUrl();
 	}
 
 	public Long getId() {
@@ -46,12 +67,12 @@ public class MovieDTO implements Serializable {
 		this.subTitle = subTitle;
 	}
 
-	public String getImgUrl() {
-		return imgUrl;
+	public Instant getDateLanc() {
+		return dateLanc;
 	}
 
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
+	public void setDateLanc(Instant dateLanc) {
+		this.dateLanc = dateLanc;
 	}
 
 	public String getSynopsis() {
@@ -60,5 +81,29 @@ public class MovieDTO implements Serializable {
 
 	public void setSynopsis(String synopsis) {
 		this.synopsis = synopsis;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
+	public String getVideoUrl() {
+		return videoUrl;
+	}
+
+	public void setVideoUrl(String videoUrl) {
+		this.videoUrl = videoUrl;
 	}
 }
