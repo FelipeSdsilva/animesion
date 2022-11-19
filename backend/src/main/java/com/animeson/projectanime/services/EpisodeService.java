@@ -17,8 +17,8 @@ public class EpisodeService {
 	private EpisodeRepository epiRepository;
 
 	@Transactional(readOnly = true)
-	public List<EpisodeDTO> findAll() {
-		List<Episode> listEpi = epiRepository.findAll();
+	public List<EpisodeDTO> findAllEpisode(Long id) {
+		List<Episode> listEpi = epiRepository.findByAnimeId(id);
 		return listEpi.stream().map(epi -> new EpisodeDTO(epi)).toList();
 	}
 

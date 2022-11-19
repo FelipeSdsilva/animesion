@@ -29,9 +29,6 @@ INSERT INTO tb_episode(name_Episode, video_Url, temp, anime_id) VALUES ('06-Mate
 INSERT INTO tb_episode(name_Episode, video_Url, temp, anime_id) VALUES ('114-Começo Tranquilo','<iframe src="https://drive.google.com/file/d/1sCM2jW6Qv8vTn06trEw7qJygBUbEbmPG/view?usp=sharing" width="640" height="360" frameborder="0" allowfullscreen></iframe>',6,3);
 INSERT INTO tb_episode(name_Episode, video_Url, temp, anime_id) VALUES ('115-Mirko, a Número 5','<iframe src="https://drive.google.com/file/d/1sDh2NW1ouLYkV3XtHfABxlf5dsQv23tN/view?usp=sharing" width="640" height="360" frameborder="0" allowfullscreen></iframe>',6,3);
 
-
-
-
 INSERT INTO tb_genre (name) VALUES ('Ação');
 INSERT INTO tb_genre (name) VALUES ('Aventura');
 INSERT INTO tb_genre (name) VALUES ('Artes Marciais');
