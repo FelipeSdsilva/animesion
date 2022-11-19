@@ -27,10 +27,10 @@ public class Movie implements Serializable {
 	private String title;
 	private String subTitle;
 
-	@Column(columnDefinition = "")
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant dateLanc;
 
-	@Column(columnDefinition = "")
+	@Column(columnDefinition = "TEXT")
 	private String synopsis;
 	private String imgUrl;
 	private String language;

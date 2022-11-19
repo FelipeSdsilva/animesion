@@ -30,12 +30,12 @@ public class Anime implements Serializable {
 	private String title;
 	private Integer qtdTemp;
 
-	@Column(columnDefinition = "")
+	@Column(columnDefinition = "TEXT")
 	private String synopsis;
 	private String language;
 	private String productorOrStudio;
 
-	@Column(columnDefinition = "")
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant dateLanc;
 	private String imgUrl;
 	private String videoUrl;

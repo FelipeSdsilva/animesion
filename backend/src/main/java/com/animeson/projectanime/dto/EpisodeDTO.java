@@ -9,34 +9,27 @@ public class EpisodeDTO implements Serializable {
 
 	private Long id;
 	private String nameEpisode;
-	private String description;
-	private String imgUrl;
 	private String videoUrl;
 	private Integer temp;
 	private Long animeId;
-	
+
 	public EpisodeDTO() {
 	}
 
-	public EpisodeDTO(Long id, String nameEpisode, String description, String imgUrl, String videoUrl, Integer temp,
-			Long animeId) {
+	public EpisodeDTO(Long id, String nameEpisode, String videoUrl, Integer temp, Long animeId) {
 		this.id = id;
 		this.nameEpisode = nameEpisode;
-		this.description = description;
-		this.imgUrl = imgUrl;
 		this.videoUrl = videoUrl;
 		this.temp = temp;
 		this.animeId = animeId;
 	}
-	
+
 	public EpisodeDTO(Episode entity) {
 		id = entity.getId();
 		nameEpisode = entity.getNameEpisode();
-		description = entity.getDescription();
-		imgUrl = entity.getImgUrl();
 		videoUrl = entity.getVideoUrl();
 		temp = entity.getTemp();
-		animeId = new Episode().getId();
+		animeId = entity.getAnime().getId();
 	}
 
 	public Long getId() {
@@ -53,22 +46,6 @@ public class EpisodeDTO implements Serializable {
 
 	public void setNameEpisode(String nameEpisode) {
 		this.nameEpisode = nameEpisode;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getImgUrl() {
-		return imgUrl;
-	}
-
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
 	}
 
 	public String getVideoUrl() {

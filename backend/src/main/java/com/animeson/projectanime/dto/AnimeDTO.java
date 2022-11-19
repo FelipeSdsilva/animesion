@@ -3,6 +3,8 @@ package com.animeson.projectanime.dto;
 import java.io.Serializable;
 import java.time.Instant;
 
+import com.animeson.projectanime.entites.Anime;
+
 public class AnimeDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -18,8 +20,8 @@ public class AnimeDTO implements Serializable {
 	public AnimeDTO() {
 	}
 
-	public AnimeDTO(Long id, String title, Integer qtdTemp, String synopsis, String language,
-			String productorOrStudio, Instant dateLanc, String imgUrl) {
+	public AnimeDTO(Long id, String title, Integer qtdTemp, String synopsis, String language, String productorOrStudio,
+			Instant dateLanc, String imgUrl) {
 		this.id = id;
 		this.title = title;
 		this.qtdTemp = qtdTemp;
@@ -28,6 +30,17 @@ public class AnimeDTO implements Serializable {
 		this.productorOrStudio = productorOrStudio;
 		this.dateLanc = dateLanc;
 		this.imgUrl = imgUrl;
+	}
+
+	public AnimeDTO(Anime entity) {
+		id = entity.getId();
+		title = entity.getTitle();
+		qtdTemp = entity.getQtdTemp();
+		synopsis = entity.getSynopsis();
+		language = entity.getLanguage();
+		productorOrStudio = entity.getProductorOrStudio();
+		dateLanc = entity.getDateLanc();
+		imgUrl = entity.getImgUrl();
 	}
 
 	public Long getId() {

@@ -3,7 +3,6 @@ package com.animeson.projectanime.entites;
 import java.io.Serializable;
 import java.util.Objects;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,26 +20,19 @@ public class Episode implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nameEpisode;
-
-	@Column(columnDefinition = "")
-	private String description;
-	private String imgUrl;
 	private String videoUrl;
 	private Integer temp;
 
 	@ManyToOne
-	@JoinColumn(name ="anime_id")
+	@JoinColumn(name = "anime_id")
 	private Anime anime;
-	
+
 	public Episode() {
 	}
 
-	public Episode(Long id, String nameEpisode, String description, String imgUrl, String videoUrl, Integer temp,
-			Anime anime) {
+	public Episode(Long id, String nameEpisode, String videoUrl, Integer temp, Anime anime) {
 		this.id = id;
 		this.nameEpisode = nameEpisode;
-		this.description = description;
-		this.imgUrl = imgUrl;
 		this.videoUrl = videoUrl;
 		this.temp = temp;
 		this.anime = anime;
@@ -60,22 +52,6 @@ public class Episode implements Serializable {
 
 	public void setNameEpisode(String nameEpisode) {
 		this.nameEpisode = nameEpisode;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getImgUrl() {
-		return imgUrl;
-	}
-
-	public void setImgUrl(String imgUrl) {
-		this.imgUrl = imgUrl;
 	}
 
 	public String getVideoUrl() {
