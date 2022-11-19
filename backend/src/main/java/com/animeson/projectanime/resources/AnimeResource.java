@@ -32,6 +32,12 @@ public class AnimeResource {
 		return ResponseEntity.ok().body(pageDto);
 	}
 	
+	@GetMapping(value = "{id}")
+	public ResponseEntity<AnimeDTO> findByAnimeForId(Long id){
+		AnimeDTO aniDto = aniService.animefindById(id);
+		return ResponseEntity.ok().body(aniDto);
+	}
+	
 	@GetMapping(value = "{id}/episodes")
 	public ResponseEntity<List<EpisodeDTO>> listAnimeEpisode(@PathVariable Long id){
 		List<EpisodeDTO> epiList = epiService.findAllEpisode(id);

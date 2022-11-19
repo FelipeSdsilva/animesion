@@ -19,6 +19,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.animeson.projectanime.dto.AnimeDTO;
+
 @Entity
 @Table(name = "tb_anime")
 public class Anime implements Serializable {
@@ -38,22 +40,19 @@ public class Anime implements Serializable {
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant dateLanc;
 	private String imgUrl;
-	private String videoUrl;
 
 	@OneToMany(mappedBy = "anime")
 	private List<Episode> episodies = new ArrayList<>();
 
 	@ManyToMany
-	@JoinTable(name = "tb_anime_genre",
-	joinColumns = @JoinColumn(name = "anime_id"), 
-	inverseJoinColumns = @JoinColumn(name = "genre_id"))
+	@JoinTable(name = "tb_anime_genre", joinColumns = @JoinColumn(name = "anime_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
 	private Set<Genre> genres = new HashSet<>();
 
 	public Anime() {
 	}
 
 	public Anime(Long id, String title, Integer qtdTemp, String synopsis, String language, String productorOrStudio,
-			Instant dateLanc, String imgUrl, String videoUrl) {
+			Instant dateLanc, String imgUrl) {
 		this.id = id;
 		this.title = title;
 		this.qtdTemp = qtdTemp;
@@ -62,7 +61,7 @@ public class Anime implements Serializable {
 		this.productorOrStudio = productorOrStudio;
 		this.dateLanc = dateLanc;
 		this.imgUrl = imgUrl;
-		this.videoUrl = videoUrl;
+		
 	}
 
 	public Long getId() {
@@ -129,20 +128,23 @@ public class Anime implements Serializable {
 		this.imgUrl = imgUrl;
 	}
 
-	public String getVideoUrl() {
-		return videoUrl;
-	}
-
-	public void setVideoUrl(String videoUrl) {
-		this.videoUrl = videoUrl;
-	}
-
 	public List<Episode> getEpisodies() {
 		return episodies;
 	}
 
 	public Set<Genre> getGenres() {
 		return genres;
+	}
+
+	public void convertEntityInDTO(Anime entity, AnimeDTO animeDto) {
+
+		entity.setTitle(animeDto.getTitle());
+		entity.setQtdTemp(animeDto.getQtdTemp());
+		entity.setSynopsis(animeDto.getSynopsis());
+		entity.setLanguage(animeDto.getLanguage());
+		entity.setProductorOrStudio(animeDto.getProductorOrStudio());
+		entity.setDateLanc(animeDto.getDateLanc());
+		entity.setImgUrl(animeDto.getImgUrl());
 	}
 
 	@Override

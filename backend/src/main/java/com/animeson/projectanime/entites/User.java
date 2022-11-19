@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +17,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.animeson.projectanime.dto.UserDTO;
 
 @Entity
 @Table(name = "tb_user")
@@ -30,7 +33,7 @@ public class User implements Serializable {
 	private String email;
 	private String password;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name ="tb_user_role",
 		joinColumns = @JoinColumn(name = "user_id"),
 		inverseJoinColumns = @JoinColumn(name="role_id"))
@@ -96,6 +99,12 @@ public class User implements Serializable {
 
 	public List<Notification> getNotifications() {
 		return notifications;
+	}
+	
+	public void convertEntityInDTO(User entity, UserDTO userDto) {
+		entity.setName(userDto.getName());
+		entity.setNickName(userDto.getNickName());
+		entity.setEmail(userDto.getEmail());
 	}
 
 	@Override

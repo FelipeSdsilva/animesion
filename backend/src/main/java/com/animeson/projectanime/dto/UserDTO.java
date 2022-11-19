@@ -1,6 +1,10 @@
 package com.animeson.projectanime.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.animeson.projectanime.entites.User;
 
 public class UserDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -10,7 +14,9 @@ public class UserDTO implements Serializable{
 	private String nickName;
 	private String email;
 
-	public UserDTO() {
+	private Set<RoleDTO> roles = new HashSet<>();
+	
+	public UserDTO() { 
 	}
 
 	public UserDTO(Long id, String name, String nickName, String email) {
@@ -18,6 +24,14 @@ public class UserDTO implements Serializable{
 		this.name = name;
 		this.nickName = nickName;
 		this.email = email;
+	}
+	
+	public UserDTO(User entity) {
+		id = entity.getId();
+		name = entity.getName();
+		nickName = entity.getNickName();
+		email = entity.getEmail();
+		entity.getRoles().forEach(role -> this.roles.add(new RoleDTO(role)));
 	}
 
 	public Long getId() {
@@ -50,5 +64,9 @@ public class UserDTO implements Serializable{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Set<RoleDTO> getRoles() {
+		return roles;
 	}
 }
