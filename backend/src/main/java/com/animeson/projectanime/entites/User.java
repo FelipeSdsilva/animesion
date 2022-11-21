@@ -107,7 +107,7 @@ public class User implements Serializable {
 		entity.setEmail(userDto.getEmail());
 		entity.getRoles().clear();
 		Role role = new Role();
-		role.setAuthority("ROLE_OPERATOR");
+		role.setId(1L);
 		entity.getRoles().add(role);
 	}
 
