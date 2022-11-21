@@ -32,16 +32,16 @@ public class User implements Serializable {
 	private String nickName;
 	private String email;
 	private String password;
-	
+
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name ="tb_user_role",
-		joinColumns = @JoinColumn(name = "user_id"),
-		inverseJoinColumns = @JoinColumn(name="role_id"))
+	@JoinTable(name = "tb_user_role", 
+	joinColumns = @JoinColumn(name = "user_id"), 
+	inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 
 	@OneToMany(mappedBy = "user")
 	private List<Notification> notifications = new ArrayList<>();
-	
+
 	public User() {
 	}
 
@@ -92,7 +92,7 @@ public class User implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -100,11 +100,15 @@ public class User implements Serializable {
 	public List<Notification> getNotifications() {
 		return notifications;
 	}
-	
+
 	public void convertEntityInDTO(User entity, UserDTO userDto) {
 		entity.setName(userDto.getName());
 		entity.setNickName(userDto.getNickName());
 		entity.setEmail(userDto.getEmail());
+		entity.getRoles().clear();
+		Role role = new Role();
+		role.setAuthority("ROLE_OPERATOR");
+		entity.getRoles().add(role);
 	}
 
 	@Override
