@@ -3,6 +3,8 @@ package com.animeson.projectanime.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,7 +41,7 @@ public class UserResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<UserDTO> insertNewUser(@RequestBody UserInsertDTO userInDto){
+	public ResponseEntity<UserDTO> insertNewUser(@Valid @RequestBody UserInsertDTO userInDto){
 		UserDTO userDto = userService.insertNewUser(userInDto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(userDto.getId()).toUri();
@@ -47,7 +49,7 @@ public class UserResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @RequestBody UserInsertDTO userInsDto){
+	public ResponseEntity<UserDTO> updateUser(@PathVariable Long id,@Valid @RequestBody UserInsertDTO userInsDto){
 		UserDTO dto = userService.updateUser(id, userInsDto);
 		return ResponseEntity.ok().body(dto);
 	}

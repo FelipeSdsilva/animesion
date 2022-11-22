@@ -3,6 +3,8 @@ package com.animeson.projectanime.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -51,7 +53,7 @@ public class AnimeResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<AnimeDTO> insertNewAnime(@RequestBody AnimeDTO aniDto) {
+	public ResponseEntity<AnimeDTO> insertNewAnime(@Valid @RequestBody AnimeDTO aniDto) {
 		aniDto = aniService.insertNewAnime(aniDto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
 				.buildAndExpand(aniDto.getId()).toUri();
@@ -59,12 +61,12 @@ public class AnimeResource {
 	}
 
 	@PostMapping(value = "{id}/insert/episodes")
-	public ResponseEntity<List<EpisodeDTO>> insertListEp(@PathVariable Long id, @RequestBody EpisodeDTO epiDto) {
+	public ResponseEntity<List<EpisodeDTO>> insertListEp(@PathVariable Long id,@Valid @RequestBody EpisodeDTO epiDto) {
 		return null;
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<AnimeDTO> updateAnime(@PathVariable Long id, @RequestBody AnimeDTO aniDto) {
+	public ResponseEntity<AnimeDTO> updateAnime(@PathVariable Long id,@Valid @RequestBody AnimeDTO aniDto) {
 		aniDto = aniService.updateAnime(id, aniDto);
 		return ResponseEntity.ok().body(aniDto);
 	}

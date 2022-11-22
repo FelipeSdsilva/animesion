@@ -2,6 +2,8 @@ package com.animeson.projectanime.resources;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,7 +41,7 @@ public class MovieResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<MovieDTO> insertNewMovie(@RequestBody MovieDTO movieDto){
+	public ResponseEntity<MovieDTO> insertNewMovie(@Valid @RequestBody MovieDTO movieDto){
 		movieDto = movieService.insertMovie(movieDto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(movieDto.getId()).toUri();
@@ -47,7 +49,7 @@ public class MovieResource {
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<MovieDTO> updateMovie(@PathVariable Long id, @RequestBody MovieDTO movieDto){
+	public ResponseEntity<MovieDTO> updateMovie(@PathVariable Long id,@Valid @RequestBody MovieDTO movieDto){
 		movieDto = movieService.updateMovie(id, movieDto);
 		return ResponseEntity.ok().body(movieDto);
 	}

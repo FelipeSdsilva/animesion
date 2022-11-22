@@ -3,6 +3,8 @@ package com.animeson.projectanime.resources;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,7 +40,7 @@ public class GenreResource {
 	}
 
 	@PostMapping
-	public ResponseEntity<GenreDTO> insertNewGenre(@RequestBody GenreDTO genreDto) {
+	public ResponseEntity<GenreDTO> insertNewGenre(@Valid @RequestBody GenreDTO genreDto) {
 		genreDto = genService.insertNewGenre(genreDto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(genreDto.getId())
 				.toUri();
@@ -46,7 +48,7 @@ public class GenreResource {
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<GenreDTO> updateGenre(@PathVariable Long id, @RequestBody GenreDTO genreDto) {
+	public ResponseEntity<GenreDTO> updateGenre(@PathVariable Long id,@Valid @RequestBody GenreDTO genreDto) {
 		genreDto = genService.updateGenre(id, genreDto);
 		return ResponseEntity.ok().body(genreDto);
 	}

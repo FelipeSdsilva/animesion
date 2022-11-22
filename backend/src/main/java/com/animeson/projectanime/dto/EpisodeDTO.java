@@ -2,14 +2,23 @@ package com.animeson.projectanime.dto;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+
 import com.animeson.projectanime.entites.Episode;
 
 public class EpisodeDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
+
+	@NotBlank(message = "This space cannot be empty")
 	private String nameEpisode;
+
+	@NotBlank(message = "This space cannot be empty")
 	private String videoUrl;
+
+	@Positive(message = "This number cannot be negative")
 	private Integer temp;
 	private Long animeId;
 
