@@ -53,7 +53,8 @@ public class AnimeResource {
 	@PostMapping
 	public ResponseEntity<AnimeDTO> insertNewAnime(@RequestBody AnimeDTO aniDto) {
 		aniDto = aniService.insertNewAnime(aniDto);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(aniDto.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
+				.buildAndExpand(aniDto.getId()).toUri();
 		return ResponseEntity.created(uri).body(aniDto);
 	}
 
