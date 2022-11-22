@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.animeson.projectanime.dto.GenreDTO;
+
 @Entity
 @Table(name ="tb_genre")
 public class Genre implements Serializable {
@@ -52,6 +54,11 @@ public class Genre implements Serializable {
 		this.name = name;
 	}
 
+	public void convertEntityInDto(Genre entity, GenreDTO genreDto) {
+		entity.setName(genreDto.getName());
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

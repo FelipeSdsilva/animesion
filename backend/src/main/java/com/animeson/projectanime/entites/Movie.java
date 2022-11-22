@@ -16,6 +16,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.animeson.projectanime.dto.MovieDTO;
+
 @Entity
 @Table(name = "tb_movie")
 public class Movie implements Serializable {
@@ -120,7 +122,21 @@ public class Movie implements Serializable {
 	public void setVideoUrl(String videoUrl) {
 		this.videoUrl = videoUrl;
 	}
+	
+	public Set<Genre> getGenres() {
+		return genres;
+	}
 
+	public void convertEntityInDto(Movie entity, MovieDTO movieDto) {
+		entity.setTitle(movieDto.getTitle());
+		entity.setSubTitle(movieDto.getSubTitle());
+		entity.setDateLanc(movieDto.getDateLanc());
+		entity.setSynopsis(movieDto.getSynopsis());
+		entity.setImgUrl(movieDto.getImgUrl());
+		entity.setLanguage(movieDto.getLanguage());
+		entity.setVideoUrl(movieDto.getVideoUrl());
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

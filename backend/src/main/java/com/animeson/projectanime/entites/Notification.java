@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.animeson.projectanime.dto.NotificationDTO;
+
 @Entity
 @Table(name = "tb_notification")
 public class Notification implements Serializable {
@@ -22,10 +24,10 @@ public class Notification implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(columnDefinition = "")
+	@Column(columnDefinition = "TEXT")
 	private String text;
 
-	@Column(columnDefinition = "")
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant moment;
 	private boolean read;
 
@@ -75,6 +77,12 @@ public class Notification implements Serializable {
 		this.read = read;
 	}
 
+	public void convertEntityInDto (Notification entity, NotificationDTO notDto) {
+		entity.setText(notDto.getText());
+		entity.setMoment(Instant.now());
+		entity.isRead();
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
