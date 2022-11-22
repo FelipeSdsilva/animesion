@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,13 +38,13 @@ public class AnimeResource {
 		return ResponseEntity.ok().body(pageDto);
 	}
 
-	@GetMapping(value = "{id}")
-	public ResponseEntity<AnimeDTO> findByAnimeForId(Long id) {
+	@GetMapping(value = "/{id}")
+	public ResponseEntity<AnimeDTO> findByAnimeForId(@PathVariable Long id) {
 		AnimeDTO aniDto = aniService.animefindById(id);
 		return ResponseEntity.ok().body(aniDto);
 	}
 
-	@GetMapping(value = "{id}/episodes")
+	@GetMapping(value = "/{id}/episodes")
 	public ResponseEntity<List<EpisodeDTO>> listAnimeEpisode(@PathVariable Long id) {
 		List<EpisodeDTO> epiList = epiService.findAllEpisode(id);
 		return ResponseEntity.ok().body(epiList);
@@ -61,10 +62,15 @@ public class AnimeResource {
 		return null;
 	}
 
-	@PutMapping(value = "{id}")
+	@PutMapping(value = "/{id}")
 	public ResponseEntity<AnimeDTO> updateAnime(@PathVariable Long id, @RequestBody AnimeDTO aniDto) {
 		aniDto = aniService.updateAnime(id, aniDto);
 		return ResponseEntity.ok().body(aniDto);
 	}
 
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Void> deleteAnime(@PathVariable Long id){
+			aniService.deleteAniById(id);
+		return ResponseEntity.noContent().build();
+	}
 }

@@ -21,6 +21,7 @@ import javax.persistence.Table;
 
 import com.animeson.projectanime.dto.AnimeDTO;
 
+
 @Entity
 @Table(name = "tb_anime")
 public class Anime implements Serializable {
@@ -45,7 +46,9 @@ public class Anime implements Serializable {
 	private List<Episode> episodies = new ArrayList<>();
 
 	@ManyToMany
-	@JoinTable(name = "tb_anime_genre", joinColumns = @JoinColumn(name = "anime_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
+	@JoinTable(name = "tb_anime_genre",
+	joinColumns = @JoinColumn(name = "anime_id"),
+	inverseJoinColumns = @JoinColumn(name = "genre_id"))
 	private Set<Genre> genres = new HashSet<>();
 
 	public Anime() {
