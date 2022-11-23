@@ -2,7 +2,6 @@ package com.animeson.projectanime.entites;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,8 +14,19 @@ import javax.persistence.Table;
 
 import com.animeson.projectanime.dto.NotificationDTO;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
 @Table(name = "tb_notification")
+@Getter
+@Setter
+@EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 public class Notification implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -35,68 +45,10 @@ public class Notification implements Serializable {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	public Notification() {
-	}
-
-	public Notification(Long id, String text, Instant moment, boolean read) {
-		this.id = id;
-		this.text = text;
-		this.moment = moment;
-		this.read = read;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getText() {
-		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
-	}
-
-	public Instant getMoment() {
-		return moment;
-	}
-
-	public void setMoment(Instant moment) {
-		this.moment = moment;
-	}
-
-	public boolean isRead() {
-		return read;
-	}
-
-	public void setRead(boolean read) {
-		this.read = read;
-	}
 
 	public void convertEntityInDto (Notification entity, NotificationDTO notDto) {
 		entity.setText(notDto.getText());
 		entity.setMoment(Instant.now());
 		entity.isRead();
-	}
-	
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Notification other = (Notification) obj;
-		return Objects.equals(id, other.id);
 	}
 }

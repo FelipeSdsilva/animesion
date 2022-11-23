@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,11 +20,15 @@ import com.animeson.projectanime.dto.UserDTO;
 import com.animeson.projectanime.dto.UserInsertDTO;
 import com.animeson.projectanime.services.UserService;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 @RestController
 @RequestMapping(value = "/users")
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserResource {
 
-	@Autowired
 	private UserService userService;
 
 	@GetMapping
@@ -33,31 +36,31 @@ public class UserResource {
 		List<UserDTO> listUser = userService.findAllUser();
 		return ResponseEntity.ok().body(listUser);
 	}
-	
+
 	@GetMapping(value = "{id}")
-	public ResponseEntity<UserDTO> findUserById(@PathVariable Long id){
+	public ResponseEntity<UserDTO> findUserById(@PathVariable Long id) {
 		UserDTO userDto = userService.findUserById(id);
 		return ResponseEntity.ok().body(userDto);
 	}
-	
+
 	@PostMapping
-	public ResponseEntity<UserDTO> insertNewUser(@Valid @RequestBody UserInsertDTO userInDto){
+	public ResponseEntity<UserDTO> insertNewUser(@Valid @RequestBody UserInsertDTO userInDto) {
 		UserDTO userDto = userService.insertNewUser(userInDto);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(userDto.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userDto.getId())
+				.toUri();
 		return ResponseEntity.created(uri).body(userDto);
 	}
-	
+
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<UserDTO> updateUser(@PathVariable Long id,@Valid @RequestBody UserInsertDTO userInsDto){
+	public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @Valid @RequestBody UserInsertDTO userInsDto) {
 		UserDTO dto = userService.updateUser(id, userInsDto);
 		return ResponseEntity.ok().body(dto);
 	}
-	
+
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> deleteUser(@PathVariable Long id){
-		 userService.deleteUser(id);
-		 return ResponseEntity.noContent().build();
+	public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+		userService.deleteUser(id);
+		return ResponseEntity.noContent().build();
 	}
-	
+
 }

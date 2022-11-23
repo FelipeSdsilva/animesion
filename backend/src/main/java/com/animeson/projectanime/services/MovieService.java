@@ -2,7 +2,6 @@ package com.animeson.projectanime.services;
 
 import javax.persistence.EntityNotFoundException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,10 +14,14 @@ import com.animeson.projectanime.repositories.MovieRepository;
 import com.animeson.projectanime.services.exceptions.DatabaseException;
 import com.animeson.projectanime.services.exceptions.ResourceNotFoundException;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 @Service
+@NoArgsConstructor
+@AllArgsConstructor
 public class MovieService {
 
-	@Autowired
 	private MovieRepository movieRepository;
 
 	@Transactional(readOnly = true)

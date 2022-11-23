@@ -3,6 +3,15 @@ package com.animeson.projectanime.dto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserInsertDTO extends UserDTO {
 	private static final long serialVersionUID = 1L;
 
@@ -10,15 +19,4 @@ public class UserInsertDTO extends UserDTO {
 	@NotBlank(message = "This password cannot be empty")
 	private String password;
 
-	public UserInsertDTO() {
-		super();
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 }

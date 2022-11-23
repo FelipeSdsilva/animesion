@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,10 +11,14 @@ import com.animeson.projectanime.dto.EpisodeDTO;
 import com.animeson.projectanime.repositories.EpisodeRepository;
 import com.animeson.projectanime.services.exceptions.ResourceNotFoundException;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 @Service
+@NoArgsConstructor
+@AllArgsConstructor
 public class EpisodeService {
 
-	@Autowired
 	private EpisodeRepository epiRepository;
 
 	@Transactional(readOnly = true)

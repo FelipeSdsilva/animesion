@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -24,14 +23,17 @@ import com.animeson.projectanime.dto.EpisodeDTO;
 import com.animeson.projectanime.services.AnimeService;
 import com.animeson.projectanime.services.EpisodeService;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 @RestController
 @RequestMapping(value = "/animes")
+@NoArgsConstructor
+@AllArgsConstructor
 public class AnimeResource {
 
-	@Autowired
 	private AnimeService aniService;
 
-	@Autowired
 	private EpisodeService epiService;
 
 	@GetMapping
@@ -55,25 +57,24 @@ public class AnimeResource {
 	@PostMapping
 	public ResponseEntity<AnimeDTO> insertNewAnime(@Valid @RequestBody AnimeDTO aniDto) {
 		aniDto = aniService.insertNewAnime(aniDto);
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}")
-				.buildAndExpand(aniDto.getId()).toUri();
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("{id}").buildAndExpand(aniDto.getId()).toUri();
 		return ResponseEntity.created(uri).body(aniDto);
 	}
 
 	@PostMapping(value = "{id}/insert/episodes")
-	public ResponseEntity<List<EpisodeDTO>> insertListEp(@PathVariable Long id,@Valid @RequestBody EpisodeDTO epiDto) {
+	public ResponseEntity<List<EpisodeDTO>> insertListEp(@PathVariable Long id, @Valid @RequestBody EpisodeDTO epiDto) {
 		return null;
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<AnimeDTO> updateAnime(@PathVariable Long id,@Valid @RequestBody AnimeDTO aniDto) {
+	public ResponseEntity<AnimeDTO> updateAnime(@PathVariable Long id, @Valid @RequestBody AnimeDTO aniDto) {
 		aniDto = aniService.updateAnime(id, aniDto);
 		return ResponseEntity.ok().body(aniDto);
 	}
 
 	@DeleteMapping(value = "/{id}")
-	public ResponseEntity<Void> deleteAnime(@PathVariable Long id){
-			aniService.deleteAniById(id);
+	public ResponseEntity<Void> deleteAnime(@PathVariable Long id) {
+		aniService.deleteAniById(id);
 		return ResponseEntity.noContent().build();
 	}
 }

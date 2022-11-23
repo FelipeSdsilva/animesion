@@ -4,7 +4,6 @@ import java.net.URI;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -21,11 +20,15 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.animeson.projectanime.dto.MovieDTO;
 import com.animeson.projectanime.services.MovieService;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 @RestController
 @RequestMapping(value = "/movies")
+@NoArgsConstructor
+@AllArgsConstructor
 public class MovieResource {
 
-	@Autowired
 	private MovieService movieService;
 	
 	@GetMapping
