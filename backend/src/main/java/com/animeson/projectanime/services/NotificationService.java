@@ -1,17 +1,14 @@
 package com.animeson.projectanime.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.animeson.projectanime.repositories.NotificationRepository;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
 @Service
-@NoArgsConstructor
-@AllArgsConstructor
 public class NotificationService {
 
+	@Autowired
 	@SuppressWarnings("unused")
 	private NotificationRepository notRepository;
 }

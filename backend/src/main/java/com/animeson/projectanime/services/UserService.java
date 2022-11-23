@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -16,16 +17,13 @@ import com.animeson.projectanime.repositories.UserRepository;
 import com.animeson.projectanime.services.exceptions.DatabaseException;
 import com.animeson.projectanime.services.exceptions.ResourceNotFoundException;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
 @Service
-@NoArgsConstructor
-@AllArgsConstructor
 public class UserService {
 
+	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
+	@Autowired
 	private UserRepository userRepository;
 
 	@Transactional(readOnly = true)

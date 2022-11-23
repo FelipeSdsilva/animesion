@@ -70,5 +70,4 @@ public class Anime implements Serializable {
 		entity.setDateLanc(animeDto.getDateLanc());
 		entity.setImgUrl(animeDto.getImgUrl());
 	}
-
 }

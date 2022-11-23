@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,15 +21,11 @@ import com.animeson.projectanime.dto.UserDTO;
 import com.animeson.projectanime.dto.UserInsertDTO;
 import com.animeson.projectanime.services.UserService;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
 @RestController
 @RequestMapping(value = "/users")
-@NoArgsConstructor
-@AllArgsConstructor
 public class UserResource {
 
+	@Autowired
 	private UserService userService;
 
 	@GetMapping

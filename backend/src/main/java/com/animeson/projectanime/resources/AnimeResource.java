@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -23,17 +24,14 @@ import com.animeson.projectanime.dto.EpisodeDTO;
 import com.animeson.projectanime.services.AnimeService;
 import com.animeson.projectanime.services.EpisodeService;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
 @RestController
 @RequestMapping(value = "/animes")
-@NoArgsConstructor
-@AllArgsConstructor
 public class AnimeResource {
 
+	@Autowired
 	private AnimeService aniService;
 
+	@Autowired
 	private EpisodeService epiService;
 
 	@GetMapping

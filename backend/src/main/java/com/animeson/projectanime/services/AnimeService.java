@@ -2,6 +2,7 @@ package com.animeson.projectanime.services;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,14 +15,10 @@ import com.animeson.projectanime.repositories.AnimeRepository;
 import com.animeson.projectanime.services.exceptions.DatabaseException;
 import com.animeson.projectanime.services.exceptions.ResourceNotFoundException;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
 @Service
-@NoArgsConstructor
-@AllArgsConstructor
 public class AnimeService {
 
+	@Autowired
 	private AnimeRepository aniRepository;
 
 	@Transactional(readOnly = true)

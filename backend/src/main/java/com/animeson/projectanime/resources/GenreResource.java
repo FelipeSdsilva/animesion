@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,15 +20,11 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.animeson.projectanime.dto.GenreDTO;
 import com.animeson.projectanime.services.GenreService;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
 @RestController
 @RequestMapping(value = "/genres")
-@NoArgsConstructor
-@AllArgsConstructor
 public class GenreResource {
 
+	@Autowired
 	private GenreService genService;
 
 	@GetMapping
