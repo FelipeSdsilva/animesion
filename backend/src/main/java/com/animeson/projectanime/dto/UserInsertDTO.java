@@ -3,6 +3,8 @@ package com.animeson.projectanime.dto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.animeson.projectanime.services.validation.UserInsertValid;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +14,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@UserInsertValid
 public class UserInsertDTO extends UserDTO {
 	private static final long serialVersionUID = 1L;
 
