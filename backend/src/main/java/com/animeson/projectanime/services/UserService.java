@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.animeson.projectanime.dto.UserDTO;
 import com.animeson.projectanime.dto.UserInsertDTO;
+import com.animeson.projectanime.dto.UserUpdateDTO;
 import com.animeson.projectanime.entites.User;
 import com.animeson.projectanime.repositories.UserRepository;
 import com.animeson.projectanime.services.exceptions.DatabaseException;
@@ -47,11 +48,10 @@ public class UserService {
 	}
 
 	@Transactional
-	public UserDTO updateUser(Long id, UserInsertDTO userDto) {
+	public UserDTO updateUser(Long id, UserUpdateDTO userDto) {
 		try {
 			User entity = userRepository.getReferenceById(id);
 			entity.convertEntityInDTO(entity, userDto);
-			entity.setPassword(passwordEncoder.encode(userDto.getPassword()));
 			entity = userRepository.save(entity);
 			return new UserDTO(entity);
 		} catch (EntityNotFoundException e) {

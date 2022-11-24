@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.animeson.projectanime.dto.UserDTO;
 import com.animeson.projectanime.dto.UserInsertDTO;
+import com.animeson.projectanime.dto.UserUpdateDTO;
 import com.animeson.projectanime.services.UserService;
 
 @RestController
@@ -49,8 +50,8 @@ public class UserResource {
 	}
 
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @Valid @RequestBody UserInsertDTO userInsDto) {
-		UserDTO dto = userService.updateUser(id, userInsDto);
+	public ResponseEntity<UserDTO> updateUser(@PathVariable Long id, @Valid @RequestBody UserUpdateDTO userUpDto) {
+		UserDTO dto = userService.updateUser(id, userUpDto);
 		return ResponseEntity.ok().body(dto);
 	}
 
