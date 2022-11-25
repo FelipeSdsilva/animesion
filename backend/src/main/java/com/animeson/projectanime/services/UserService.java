@@ -26,6 +26,7 @@ import com.animeson.projectanime.services.exceptions.ResourceNotFoundException;
 @Service
 public class UserService implements UserDetailsService{
 
+	@SuppressWarnings("unused")
 	private static Logger logger = LoggerFactory.getLogger(User.class);
 
 	@Autowired
